@@ -7,6 +7,7 @@ import javax.servlet.ServletRegistration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan(basePackages = {"starter.app", "starter.config"})
-@Order(value = 0)
+@Order(value = Ordered.HIGHEST_PRECEDENCE)
 @EnableWebMvc
 public class AppInitializer extends WebMvcConfigurerAdapter implements WebApplicationInitializer {
 

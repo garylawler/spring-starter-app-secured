@@ -18,15 +18,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and()
+        http
                 .authorizeRequests()
                 .anyRequest().hasRole("USER")
                 .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
+                .formLogin()
+                .loginPage("/authenticate")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/hello", true)
+                .permitAll()
+                .and()
                 .logout()
+                .logoutSuccessUrl("/loggedOut")
+                .invalidateHttpSession(true)
                 .permitAll();
     }
 
